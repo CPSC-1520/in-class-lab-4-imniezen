@@ -1,6 +1,54 @@
-
 // Enter your code below.
+let newOrder = document.getElementById("new-order-form");
 
+newOrder.addEventListener("submit", (event) => {
+  //Prevent Default Operation  
+  event.preventDefault();
+
+    //Define Variables
+    let itemName = event.target.elements["order-item-name"].value;
+    let itemPrice = event.target.elements["order-item-price"].value;
+    let itemSize = event.target.elements["order-size"].value;
+    let nameError = document.getElementById("name-invalid-feedback")
+    let priceError = document.getElementById("price-invalid-feedback")
+    let sizeError = document.getElementById("size-invalid-feedback")
+    let isFormValid = false;
+
+    //Validate Form Item's
+    if (isValueNotEmpty(itemName) == true) { //Validate Order Item Name
+      let itemName = event.target.elements["order-item-name"].value;
+      nameError = document.getElementById("name-invalid-feedback").style.display = 'none';
+      isFormValid = true;
+    }
+    else {
+      nameError = document.getElementById("name-invalid-feedback").style.display = 'block';
+      isFormValid = false;
+    }
+    if (isValueNotEmpty(itemPrice) == true && isGreaterThanFive(itemPrice) == true) { //Validate Order Price
+      let itemPrice = event.target.elements["order-item-price"].value;
+      priceError = document.getElementById("price-invalid-feedback").style.display = 'none';
+      isFormValid = true;
+    }
+    else {
+      priceError = document.getElementById("price-invalid-feedback").style.display = 'block';
+      isFormValid = false;
+    }
+    if (isValueNotEmpty(itemSize) == true) { //Validate Order Size
+      let itemSize = event.target.elements["order-size"].value;
+      sizeError = document.getElementById("size-invalid-feedback")
+      isFormValid = true;
+    }
+    else {
+      sizeError = document.getElementById("size-invalid-feedback").style.display = 'block';
+      isFormValid = false;
+    }
+    if (isFormValid == true) { //Return Order
+      addOrderItem(itemName, itemPrice, itemSize);
+      event.target.elements["order-item-name"].value = "";
+      event.target.elements["order-item-price"].value ="";
+      event.target.elements["order-size"].value = "";
+    }
+});
 
 // functions needed for assessment (do not change.)
 
