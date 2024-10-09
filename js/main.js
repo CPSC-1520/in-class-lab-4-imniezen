@@ -12,42 +12,34 @@ newOrder.addEventListener("submit", (event) => {
     let nameError = document.getElementById("name-invalid-feedback")
     let priceError = document.getElementById("price-invalid-feedback")
     let sizeError = document.getElementById("size-invalid-feedback")
-    let errorCount = 0;
     let isFormValid = false;
 
     //Validate Form Item's
     if (isValueNotEmpty(itemName) == true) { //Validate Order Item Name
       let itemName = event.target.elements["order-item-name"].value;
-      nameError = document.getElementById("name-invalid-feedback").style.display = 'none';
-      errorCount +1;
+      nameError = document.getElementById("name-invalid-feedback").style.display = "none";
     }
     else {
-      nameError = document.getElementById("name-invalid-feedback").style.display = 'block';
+      nameError = document.getElementById("name-invalid-feedback").style.display = "block";
       isFormValid = false;
     }
     if (isValueNotEmpty(itemPrice) == true && isGreaterThanFive(itemPrice) == true) { //Validate Order Price
       let itemPrice = event.target.elements["order-item-price"].value;
-      priceError = document.getElementById("price-invalid-feedback").style.display = 'none';
-      errorCount +1;
+      priceError = document.getElementById("price-invalid-feedback").style.display = "none";
     }
     else {
-      priceError = document.getElementById("price-invalid-feedback").style.display = 'block';
+      priceError = document.getElementById("price-invalid-feedback").style.display = "block";
       isFormValid = false;
     }
     if (isValueNotEmpty(itemSize) == true) { //Validate Order Size
       let itemSize = event.target.elements["order-size"].value;
-      sizeError = document.getElementById("size-invalid-feedback")
-      errorCount +1;
+      sizeError = document.getElementById("size-invalid-feedback").style.display = "none";
     }
     else {
-      sizeError = document.getElementById("size-invalid-feedback").style.display = 'block';
+      sizeError = document.getElementById("size-invalid-feedback").style.display = "block";
       isFormValid = false;
     }
-    if (errorCount >= 3) {
-      isFormValid = false;
-    }
-    
-    if (isFormValid == true) { //Return Order
+    if (isFormValid == true) { //Return Valid Order
       addOrderItem(itemName, itemPrice, itemSize);
       event.target.elements["order-item-name"].value = "";
       event.target.elements["order-item-price"].value ="";
