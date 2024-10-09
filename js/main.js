@@ -14,8 +14,8 @@ newOrder.addEventListener("submit", (event) => {
     let sizeError = document.getElementById("size-invalid-feedback")
     let isFormValid = false;
 
-    //Validate Form Item's
-    if (isValueNotEmpty(itemName) == true) { //Validate Order Item Name
+    //Validate Order Item Name
+    if (isValueNotEmpty(itemName) == true) { 
       let itemName = event.target.elements["order-item-name"].value;
       nameError = document.getElementById("name-invalid-feedback").style.display = "none";
     }
@@ -23,7 +23,9 @@ newOrder.addEventListener("submit", (event) => {
       nameError = document.getElementById("name-invalid-feedback").style.display = "block";
       isFormValid = false;
     }
-    if (isValueNotEmpty(itemPrice) == true && isGreaterThanFive(itemPrice) == true) { //Validate Order Price
+    
+    //Validate Order Price
+    if (isValueNotEmpty(itemPrice) == true && isGreaterThanFive(itemPrice) == true) { 
       let itemPrice = event.target.elements["order-item-price"].value;
       priceError = document.getElementById("price-invalid-feedback").style.display = "none";
     }
@@ -31,7 +33,9 @@ newOrder.addEventListener("submit", (event) => {
       priceError = document.getElementById("price-invalid-feedback").style.display = "block";
       isFormValid = false;
     }
-    if (isValueNotEmpty(itemSize) == true) { //Validate Order Size
+    
+    //Validate Order Size
+    if (isValueNotEmpty(itemSize) == true) { 
       let itemSize = event.target.elements["order-size"].value;
       sizeError = document.getElementById("size-invalid-feedback").style.display = "none";
     }
@@ -39,7 +43,14 @@ newOrder.addEventListener("submit", (event) => {
       sizeError = document.getElementById("size-invalid-feedback").style.display = "block";
       isFormValid = false;
     }
-    if (isFormValid == true) { //Return Valid Order
+    
+    //Only have a valid form if all conditions are met
+    if (isValueNotEmpty(itemName) == true && isValueNotEmpty(itemPrice) == true && isGreaterThanFive(itemPrice) == true && isValueNotEmpty(itemSize) == true) {
+      isFormValid = true;
+    }
+    
+    //Return Valid Order
+    if (isFormValid == true) { 
       addOrderItem(itemName, itemPrice, itemSize);
       event.target.elements["order-item-name"].value = "";
       event.target.elements["order-item-price"].value ="";
